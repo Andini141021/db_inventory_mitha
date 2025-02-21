@@ -27,14 +27,17 @@
 </nav>
 <div class="container">
     <h1>Data barang Baru</h1>
-    <form action="simpan.php" method="POST">
+    <?php
+    $id_jenis=$_GET['id_jenis'];
+    include '../../config/koneksi.php';
+    $query=mysqli_query($conn,"SELECT * FROM jenis WHERE id_jenis='$id_jenis' ");
+    $result=mysqli_fetch_array($query);
+    ?>
+    <form action="proses_edit.php?id_jenis=<?php echo $result['id_jenis']?>" method="POST">
         <div class="mb-3">
-            <label for="exampleInputEmail1" class= "form-label">id_jenis</label>
-            <input type="number" class="form-control" name="id_jenis" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class= "form-label">nama_barang</label>
-            <input type="text" class="form-control" name="nama_barang" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class= "form-label">nama_jenis</label>
+            <input type="text" class="form-control" value="<?php echo $result['nama_jenis']?>" name="nama_jenis" 
+            id="exampleInputEmail" aria-activedescendant="emailHelp">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

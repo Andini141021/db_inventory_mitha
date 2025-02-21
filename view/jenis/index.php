@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <title>Document</title>
 </head>
-<body>
+<body><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -38,7 +39,7 @@
         </tr>
         <?php
             include '../../config/koneksi.php';
-            $queery = mysqli_query($conn,"SELECT * FROM barang");
+            $queery = mysqli_query($conn,"SELECT * FROM jenis");
             $no=1;
             if(mysqli_num_rows($queery)){
               echo "";
@@ -47,10 +48,12 @@
                 <tr>
                     <td><?php echo $no ?></td>
                     <td><?php echo $result['id_jenis']?></td>
-                    <td><?php echo $result['nama_barang']?></td>
+                    <td><?php echo $result['nama_jenis']?></td>
                     <td>
-                        <a href="" class="btn btn-warning">Edit</a>
-                        <a href="" class ="btn btn-danger">Hapus</a>
+                    <a href="edit.php?id_jenis=<?php echo $result['id_jenis']?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+                    <a href="hapus.php?id_jenis=<?php echo $result['id_jenis']?>"
+                    onclick="return confirm('kamu yakin mau hapus barang ?')"
+                    class ="btn btn-danger"><i class="fa-solid fa-trash"></i>Hapus</a>
                     </td>
                 </tr>
                 <?php
